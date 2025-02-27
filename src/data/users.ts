@@ -97,7 +97,7 @@ export const users: User[] = [
   {
     id: '1',
     username: '测试用户',
-    email: 'test@example.com',
+    email: 'seeUX@example.com',
     password: '123456' // 在实际项目中应该使用加密存储密码
   }
 ];
