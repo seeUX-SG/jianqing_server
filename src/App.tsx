@@ -27,8 +27,39 @@ function App() {
   };
 
   const handleRegister = (username: string, email: string, password: string) => {
-    // TODO: 实现注册逻辑
-    console.log('注册:', username, email, password);
+    // 验证输入
+    if (!username || !email || !password) {
+      alert('请填写所有必填项');
+      return;
+    }
+  
+    // 验证邮箱格式
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      alert('请输入有效的邮箱地址');
+      return;
+    }
+  
+    // 检查邮箱是否已被使用
+    if (users.some(u => u.email === email)) {
+      alert('该邮箱已被注册');
+      return;
+    }
+  
+    // 创建新用户
+    const newUser: User = {
+      id: (users.length + 1).toString(),
+      username,
+      email,
+      password // 注意：实际项目中应该对密码进行加密
+    };
+  
+    // 添加到用户列表
+    users.push(newUser);
+  
+    // 自动登录
+    setUser(newUser);
+    alert('注册成功！');
   };
 
   const handleAddToCart = (productId: string) => {
